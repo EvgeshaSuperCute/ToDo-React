@@ -1,0 +1,51 @@
+.record{
+    padding: 3% 0 0 0;
+    margin: 10px 10px 10px 10px;
+    height: 3rem;
+    display: flex;
+    justify-content: flex-end;
+    border: outset 5px #7b99ff;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #4166ff;
+    font-family: Bahnschrift, serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.text{
+    width: 45%;
+    margin: auto 0;
+}
+.checkbox{
+    margin: auto 10px;
+}
+
+.button{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    opacity: 0.8;
+    height: 75%;
+    border-style: hidden;
+    border-radius: 5px;
+
+}
+
+.button.open{
+    color: aliceblue;
+    width: 20%;
+    background: #7b99ff;
+    margin: auto 5% 10px 10%;
+}
+
+.button.delete{
+    width: 50px;
+    color: aliceblue;
+    background: crimson;
+    margin: auto 5% 10px auto;
+}
+
+.button:hover{
+    opacity: 1;
+}
+.button:active{
+    filter: brightness(120%);
+}
