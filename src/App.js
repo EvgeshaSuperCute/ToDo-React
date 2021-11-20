@@ -78,7 +78,6 @@ function App() {
     const openForm = (title) => {
       setOpen(!isOpen);
       someTitle = title;
-      console.log(someTitle);
     }
 
 
