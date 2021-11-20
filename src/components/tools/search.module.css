@@ -1,1 +1,43 @@
 
+form{
+    display: flex;
+    justify-content: center;
+    border: solid rgba(123, 153, 255, 0.84);
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+
+.search{
+    outline: none;
+    height: 30px;
+    color: #4166ff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background: rgba(123, 153, 255, 0.04);
+    opacity: 0.6;
+    border-style: hidden;
+}
+
+.button{
+    color: #F9F0DA;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    opacity: 0.6;
+    border-style: hidden;
+    background: rgba(123, 153, 255, 0.84);
+}
+
+.search:hover{
+    opacity: 1;
+}
+.search:active{
+    filter: brightness(120%);
+}
+
+.button:hover{
+    opacity: 1;
+}
+.button:active{
+    filter: brightness(120%);
+}

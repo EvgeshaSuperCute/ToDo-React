@@ -3,9 +3,11 @@
 import s from './App.module.css';
 import {useState} from "react";
 
-//import cn from "classnames"
+import cn from "classnames"
 import ListRecord from "./components/listRecord";
 import RecordForm from "./components/recordForm";
+import Search from "./components/tools/search";
+import Filter from "./components/tools/filter";
 
 const listData = [
     {
@@ -91,8 +93,9 @@ function App() {
                 </h2>
             <div className={s.list}>
                 <RecordForm title={someTitle} open={isOpen} openForm={openForm}/>
-                <div className={s.listHead}>
-                    [Filter] [Search]
+                <div className={cn(s.listHead, s.wrapper)}>
+                    <Filter/>
+                    <Search/>
                 </div>
                 <div className={s.overflow}>
                     {
@@ -101,8 +104,13 @@ function App() {
                         )
                     }
                 </div>
-                <div className={s.listFooter}>
-                    [Add] [Delete.selected]
+                <div className={cn(s.listFooter, s.wrapper)}>
+                    <button className={cn(s.button, s.add)}>
+                        Add
+                    </button>
+                    <button className={cn(s.button, s.delete)}>
+                        Delete selected
+                    </button>
                 </div>
             </div>
         </div>
