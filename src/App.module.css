@@ -1,4 +1,6 @@
 .App {
+  position: fixed;
+  margin-left: 35%;
   text-align: center;
 }
 
@@ -12,77 +14,19 @@
   border: none;
 }
 
-.listHead{
-  color: #4166ff;
-  font-family: Bahnschrift, serif;
-  font-size: 20px;
-  border-bottom: double 6px #7da8ff;
-  padding-bottom: 10px;
-  margin: 10px 0 0 0;
-}
-
-.listFooter{
-  color: #4166ff;
-  font-family: Bahnschrift, serif;
-  font-size: 20px;
-  border-top: double 6px #7da8ff;
-  padding-top: 10px;
-  }
-
-.wrapper{
+.list{
   display: flex;
   justify-content: space-between;
-  padding: 10px 10px 10px 10px;
-}
-
-.list{
-  position: center;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   margin: auto;
   width: 500px;
-  height: 100%;
-  background: rgba(241, 255, 255, 0.39);
+  height: 780px;
+  background: aliceblue;
   border: outset 10px #c3d8ff;
   border-radius: 25px;
 }
 
-.button{
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  opacity: 0.8;
-  height: 75%;
-  border-style: hidden;
-  border-radius: 5px;
-  margin: 0 0 10px 0;
-}
-
-.button.add{
-  color: aliceblue;
-  width: 30%;
-  height: 30px;
-  background: #34a843;
-}
-
-.button.delete{
-  width: 30%;
-  height: 30px;
-  color: aliceblue;
-  background: crimson;
-}
-
-.button:hover{
-  opacity: 1;
-}
-.button:active{
-  filter: brightness(120%);
-}
 
 ::-webkit-scrollbar {
   width: 0;
-}
-
-.overflow{
-  width: 500px;
-  height: 650px;
-  overflow: auto;
-  overflow-y: paged-y;
 }

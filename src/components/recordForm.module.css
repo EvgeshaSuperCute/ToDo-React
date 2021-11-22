@@ -2,7 +2,7 @@
     z-index: 99;
     position: absolute;
     width: 500px;
-    height: 790px;
+    height: 100%;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -58,12 +58,6 @@ h3{
     color: #418fc7;
 }
 
-.button.edit{
-    width: 30%;
-    color: aliceblue;
-    background: #34a843;
-    margin: auto auto 10px auto;
-}
 .date{
     color: #5877b4;
     font-family: Bahnschrift, serif;
@@ -84,10 +78,17 @@ h3{
     overflow-y: paged-y;
 }
 
-.button.save{
+.button.edit{
     width: 30%;
     color: aliceblue;
     background: #578cfd;
+    margin: auto auto 10px auto;
+}
+
+.button.save{
+    width: 30%;
+    color: aliceblue;
+    background: #34a843;
     margin: auto auto 10px auto;
 }
 

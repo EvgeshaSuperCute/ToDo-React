@@ -1,0 +1,22 @@
+
+.items{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    position: absolute;
+    width: 500px;
+    height: 780px;
+    overflow: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease 0s;
+    transform: perspective(1800px) translate(-50%, 0%) rotateY(-90deg);
+}
+
+.items.visible{
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s ease 0s;
+    transform: perspective(1800px) translate(0%, 0%) rotateY(0deg);
+    background: aliceblue;
+    border-radius: 15px;
+}

@@ -17,7 +17,7 @@ ul{
     opacity: 0.8;
     border-style: hidden;
     border-radius: 5px;
-    transition: all 0.3s ease 0s;
+    transition: all 0s ease 0s;
     background:  #7b99ff;
 }
 .button.active{
