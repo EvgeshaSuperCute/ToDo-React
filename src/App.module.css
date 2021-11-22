@@ -1,4 +1,6 @@
 .App {
+  position: fixed;
+  margin-left: 35%;
   text-align: center;
 }
 
@@ -12,43 +14,19 @@
   border: none;
 }
 
-.listHead{
-  color: #4166ff;
-  text-align: center;
-  font-family: Bahnschrift, serif;
-  font-size: 20px;
-  border-bottom: double 5px #7da8ff;
-  padding-bottom: 10px;
-  margin: 10px 0 0 0;
-}
-
-
-.listFooter{
-  color: #4166ff;
-  text-align: center;
-  font-family: Bahnschrift, serif;
-  font-size: 20px;
-  border-top: double 5px #7da8ff;
-  padding-top: 10px;
-  margin: 0 0 10px 0;
-  }
-
 .list{
+  display: flex;
+  justify-content: space-between;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   margin: auto;
   width: 500px;
-  height: 100%;
-  background: rgba(241, 255, 255, 0.39);
+  height: 780px;
+  background: aliceblue;
   border: outset 10px #c3d8ff;
   border-radius: 25px;
 }
+
+
 ::-webkit-scrollbar {
   width: 0;
-}
-
-.overflow{
-  width: 500px;
-  height: 650px;
-  overflow: auto;
-  overflow-y: paged-y;
 }
