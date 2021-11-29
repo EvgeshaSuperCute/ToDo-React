@@ -21,8 +21,8 @@ const Lists = ({isChosen, chosenItem, dbLists = {}, }) => {
             </div>
             <div className={cn(s.items)}>
                 {
-                    Object.entries(dbLists).map(([key,{id, title,record}]) =>
-                        <ListItem key={id} id={id} title={title} openItem={openItem}/>
+                    Object.entries(dbLists).map(([key,{id, title}]) =>
+                        <ListItem key={key} id={id} title={title} openItem={openItem}/>
                     )
                 }
             </div>
