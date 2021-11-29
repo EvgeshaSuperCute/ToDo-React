@@ -1,75 +1,41 @@
 import cn from "classnames";
-import s from "./lists.module.css";
+import Search from "./tools/search";
 import ListItem from "./listItem";
 
-const lists = [
-    {
-        id: 1,
-        title: "1 List",
-    },
-    {
-        id: 2,
-        title: "2 List",
-    },
-    {
-        id: 3,
-        title: "3 List",
-    },
-    {
-        id: 4,
-        title: "4 List",
-    },
-    {
-        id: 5,
-        title: "5 List",
-    },
-    {
-        id: 6,
-        title: "6 List",
-    },
-    {
-        id: 7,
-        title: "7 List",
-    },
-    {
-        id: 8,
-        title: "8 List",
-    },
-    {
-        id: 9,
-        title: "9 List",
-    },
-    {
-        id: 10,
-        title: "10 List",
-    },
-    {
-        id: 11,
-        title: "11 List",
-    },
-    {
-        id: 12,
-        title: "12 List",
-    },
-]
+import s from "./lists.module.css";
+
+const Lists = ({isChosen, chosenItem, dbLists = {}, }) => {
 
 
-
-const Lists = ({isChosen, chosenItem}) => {
-
-    const openItem = () => {
-        chosenItem && chosenItem();
+    const openItem = (id) => {
+        chosenItem && chosenItem(id);
+    }
+    const showData =  () =>{
+        console.log(dbLists)
     }
 
-
     return(
-        <div className={cn(s.items, {[s.visible]: !isChosen})}>
-            {
-                lists.map(({id, title}) =>
-                    <ListItem key={id} id={id} title={title} openItem={openItem}/>
-                )
-            }
+        <div className={cn(s.wrap, {[s.visible]: !isChosen})}>
+            <div className={cn(s.listHead, s.wrapper)}>
+                <Search/>
+            </div>
+            <div className={cn(s.items)}>
+                {
+                    Object.entries(dbLists).map(([key,{id, title}]) =>
+                        <ListItem key={key} id={id} title={title} openItem={openItem}/>
+                    )
+                }
+            </div>
+            <div className={cn(s.listFooter, s.wrapper)}>
+                <button className={cn(s.button, s.add)} onClick={showData}>
+                    Add
+                </button>
+                <button className={cn(s.button, s.delete)}>
+                    Delete selected
+                </button>
+            </div>
         </div>
+
     )
 }
 

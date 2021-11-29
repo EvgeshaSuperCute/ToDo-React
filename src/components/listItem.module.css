@@ -1,5 +1,7 @@
 
 .item{
+    font-size: 18px;
+    color: #31393f;
     margin: 15px auto ;
     width: 200px;
     height: 200px;
@@ -8,14 +10,17 @@
     border: outset 2px #7b99ff;
     border-radius: 5px;
     transition: all 0.5s ease 0s;
-    background: #cad4fd;
+    background: #d8e7fc;
+    transform: translateZ(0);
+    cursor: pointer;
 }
 
 .item:hover{
-    background: #92affd;
+    transform: scale(1.1);
+    background: #a9bff8;
     opacity: 1;
 }
 .item:active{
-    background: #567ffa;
+    background: #6c90ff;
     filter: brightness(120%);
 }

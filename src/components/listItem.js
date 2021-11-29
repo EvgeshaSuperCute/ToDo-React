@@ -1,12 +1,11 @@
-//import logo from './logo.svg';
+import cn from "classnames"
 
 import s from './listItem.module.css';
-import cn from "classnames"
 
 function ListItem({id, title, openItem}) {
 
     const chosenItem = () =>{
-        openItem && openItem();
+        openItem && openItem(id-1);
     }
 
     return (
