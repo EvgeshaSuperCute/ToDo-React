@@ -2,6 +2,7 @@
   position: fixed;
   margin-left: 35%;
   text-align: center;
+  user-select: none;
 }
 
 .h2{

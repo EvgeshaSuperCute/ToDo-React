@@ -4,7 +4,7 @@
     visibility: hidden;
     position: absolute;
     opacity: 0;
-    transition: all 0.4s ease 0s;
+    transition: all 0.5s ease 0s;
     transform: perspective(1800px) translate(50%, 0%) rotateY(90deg);
 }
 

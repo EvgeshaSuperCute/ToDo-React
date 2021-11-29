@@ -1,12 +1,11 @@
-//import {useState} from "react"; //
-
 import cn from "classnames"
+
 import s from "./listRecord.module.css"
 
-const ListRecord = ({id, title,text, openForm}) => {
+const ListRecord = ({id = null, title = "", openForm}) => {
 
     const changeVisibility = () => {
-       openForm && openForm(title,text);
+       openForm && openForm(id);
     }
 
   return(
