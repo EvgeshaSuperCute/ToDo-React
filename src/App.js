@@ -6,9 +6,10 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {ListContext} from "./components/Context/listContext";
 import {getListsAsync, selectListsData} from "./Redux/listReducer";
-
+import {useLocation, Route, Redirect, Routes} from "react-router-dom";
 
 import s from './App.module.css';
+
 
 const App =  () =>   {
     const [isChosen, setChosen] = useState(false);
@@ -17,6 +18,7 @@ const App =  () =>   {
     const dbLists =  useSelector(selectListsData);
     const dispatch = useDispatch();
     const [record, setRecord] = useState({});
+
 
     useEffect(   ()=>{
           dispatch(getListsAsync());
@@ -34,7 +36,6 @@ const App =  () =>   {
 
     const handleSetRecord = (data) =>
     {
-        //console.log("DATA-Context:",data)
         setRecord(data)
 
     }
@@ -45,28 +46,33 @@ const App =  () =>   {
 
 
     return (
-        <ListContext.Provider value = {{
-            Record: record,
-            onSetRecord:handleSetRecord,
-            clean: clearContext
+            <ListContext.Provider value = {{
+                Record: record,
+                onSetRecord:handleSetRecord,
+                clean: clearContext
 
 
-        }}>
-            <div className={s.App}>
-                <h2 className={s.h2}>
-                    <img className={s.img} src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/gnome-todo-icon.png" alt=''/>
-                    ToDo.
-                </h2>
-            <div className={cn(s.list)}>
-                    <List isChosen={isChosen} openList={activateList} list={item} />
-
-                    <Lists isChosen={isChosen} chosenItem={activateList} dbLists={lists}/>
-
-            </div>
-        </div>
-
+            }}>
+                <div className={s.App}>
+                    <h2 className={s.h2}>
+                        <img className={s.img} src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/gnome-todo-icon.png" alt=''/>
+                        ToDo.
+                    </h2>
+                    <div className={cn(s.list)}>
+                        <Routes>
+                            <Route path="/" element={<Lists isChosen={isChosen} chosenItem={activateList} dbLists={lists}/>}/>
+                            <Route path="/list" element={<List isChosen={isChosen} openList={activateList} list={item}/>}/>
+                        </Routes>
+                    </div>
+                </div>
             </ListContext.Provider>
+
     );
 }
 
 export default App;
+
+
+// <List isChosen={isChosen} openList={activateList} list={item} />
+//
+// <Lists isChosen={isChosen} chosenItem={activateList} dbLists={lists}/>

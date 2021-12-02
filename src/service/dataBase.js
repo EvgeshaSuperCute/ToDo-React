@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import firebase from "firebase/compat/app";
+import firebase from "firebase/compat";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -38,6 +38,7 @@ class Firebase{
     postList = (Key, list) =>{
         this.database.ref('todo/'+ Key).update(list);
     }
+
 
     addList = (newList) =>{
         const newKey = this.database.ref().child('todo-list').push().key;

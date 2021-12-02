@@ -3,42 +3,55 @@ import ListRecord from "./listRecord";
 import RecordForm from "./recordForm";
 import Search from "./tools/search";
 import Filter from "./tools/filter";
+import AddRecordForm from "./addRecordform";
 import {useState, useContext} from "react";
 import {ListContext} from "./Context/listContext";
+import {useNavigate} from "react-router-dom";
 
 
 import s from './list.module.css';
 
-function List({isChosen, openList, list}) {
-    const [isOpen, setOpen] = useState(false);
+const List = ({isChosen, openList, list}) => {
+    const [isOpenView, setOpenView] = useState(false);
+    const [isOpenAdd, setOpenAdd] = useState(false);
     const {clean, onSetRecord, Record} = useContext(ListContext);
+    const navigate = useNavigate();
 
-
-    const openForm = (id) => {
+    const openViewForm = (id) => {
         id--;
-        setOpen(true);
+        setOpenView(true);
         onSetRecord(list[id]);
 
     }
 
-    const closeForm = () => {
-        setOpen(false);
+    const closeViewForm = () => {
+        setOpenView(false);
+
+    }
+
+    const openAddForm = () => {
+        setOpenAdd(true);
+
+    }
+
+    const closeAddForm = () => {
+        setOpenAdd(false);
 
     }
 
     const close = () =>{
         clean();
+        navigate('/')
         openList && openList();
     }
 
 
     return (
         <div className={cn(s.target, {[s.active]: isChosen})}>
+
+            <AddRecordForm closeForm={closeAddForm} open={isOpenAdd}/>
             {
-                isChosen &&
-                (<RecordForm open={isOpen} closeForm={closeForm} record={Record}/>)
-
-
+                (<RecordForm open={isOpenView} closeForm={closeViewForm} record={Record}/>)
             }
             <div className={cn(s.listHead, s.wrapper)}>
                         <Filter/>
@@ -46,8 +59,8 @@ function List({isChosen, openList, list}) {
                     </div>
                     <div className={s.overflow}>
                         {
-                            isChosen && Object.entries(list).map(([key,{id, title, text}]) =>
-                                <ListRecord key={key} id={id} title={title} text={text} openForm={openForm}/>
+                            Object.entries(list).map(([key,{id, title, text}]) =>
+                                <ListRecord key={key} id={id} title={title} text={text} openForm={openViewForm}/>
                             )
                         }
                     </div>
@@ -55,7 +68,7 @@ function List({isChosen, openList, list}) {
                         <button className={cn(s.button, s.back)} onClick={close}>
                             Back
                         </button>
-                        <button className={cn(s.button, s.add)}>
+                        <button className={cn(s.button, s.add)} onClick={openAddForm}>
                             Add
                         </button>
                         <button className={cn(s.button, s.delete)}>

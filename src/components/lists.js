@@ -3,13 +3,16 @@ import Search from "./tools/search";
 import ListItem from "./listItem";
 
 import s from "./lists.module.css";
+import {useNavigate} from "react-router-dom";
 
-const Lists = ({isChosen, chosenItem, dbLists = {}, }) => {
-
+const Lists = ({isChosen = false, chosenItem, dbLists = {}, }) => {
+    const navigate = useNavigate();
 
     const openItem = (id) => {
+        navigate('/list');
         chosenItem && chosenItem(id);
     }
+
     const showData =  () =>{
         console.log(dbLists)
     }

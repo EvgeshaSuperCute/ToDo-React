@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-transform-react-statements": "^0.7.3"
+    "babel-plugin-transform-react-statements": "^0.7.3",
+    "react-router-dom": "^6.0.2"
   }
 }
