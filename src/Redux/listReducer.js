@@ -35,8 +35,17 @@ export const selectListsData = state => state.lists.data;
 export const getListsAsync = () => async (dispatch) => {
     //console.log(dispatch(fetchLists()));
     const data = await FirebaseClass.getListOnce();
-    console.log('reducerData:', data);
+    //console.log('reducerData:', data);
     dispatch(fetchListsResolve(data));
+}
+
+export const getLists = () => async (dispatch) => {
+    //console.log(dispatch(fetchLists()));
+    await FirebaseClass.getListSocket((data) => { console.log("***:",data)
+        dispatch(fetchListsResolve(data));
+    });
+    //console.log('reducerData:', data);
+    //dispatch(fetchListsResolve(data));
 }
 
 export default slice.reducer;

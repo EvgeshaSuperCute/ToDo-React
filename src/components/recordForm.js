@@ -13,7 +13,6 @@ const RecordForm = ({record, open = false, closeForm}) => {
     }
 
     return(
-        <>
             <div className={cn(s.wrap,{[s.open]: open})}>
                 <div className={cn(s.modalForm,{[s.open]: open})}>
                     <h3>
@@ -30,7 +29,6 @@ const RecordForm = ({record, open = false, closeForm}) => {
                 </div>
                 </div>
             </div>
-        </>
     )
 }
 

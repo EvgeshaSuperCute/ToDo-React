@@ -2,10 +2,11 @@ import cn from "classnames"
 
 import s from './listItem.module.css';
 
-function ListItem({id, title, openItem}) {
+function ListItem({KEY, id, title, openItem}) {
 
+    //console.log("key:", KEY);
     const chosenItem = () =>{
-        openItem && openItem(id-1);
+        openItem && openItem(KEY);
     }
 
     return (
