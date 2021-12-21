@@ -4,23 +4,37 @@ import RecordForm from "./recordForm";
 import Search from "./tools/search";
 import Filter from "./tools/filter";
 import AddRecordForm from "./addRecordform";
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 import {ListContext} from "./Context/listContext";
 import {useNavigate} from "react-router-dom";
 
 
 import s from './list.module.css';
+import {useSelector} from "react-redux";
+import {selectListsData} from "../Redux/listReducer";
 
 const List = ({isChosen, openList, list}) => {
     const [isOpenView, setOpenView] = useState(false);
     const [isOpenAdd, setOpenAdd] = useState(false);
-    const {clean, onSetRecord, Record} = useContext(ListContext);
+    const dbLists =  useSelector(selectListsData);
+    const [item, setItem] = useState({});
+    const [render, setRender] = useState(true);
+    const {clean, onSetRecord, Record, ListKey} = useContext(ListContext);
     const navigate = useNavigate();
+    //setInterval(()=>{console.log(ListKey)},2000)
 
-    const openViewForm = (id) => {
-        id--;
+
+
+    useEffect( ()=>{
+        setItem(dbLists[ListKey].records);
+        console.log("list-update", list);
+        console.log("List:",list,"------Item:",item);
+        //setRender(!render);
+    }, [dbLists])
+
+    const openViewForm = (recordKey) => {
         setOpenView(true);
-        onSetRecord(list[id]);
+        onSetRecord(list[recordKey]);
 
     }
 
@@ -47,12 +61,11 @@ const List = ({isChosen, openList, list}) => {
 
 
     return (
-        <div className={cn(s.target, {[s.active]: isChosen})}>
+        <div className={cn(s.wrap/*s.target, {[s.active]: isChosen}*/)}>
 
-            <AddRecordForm closeForm={closeAddForm} open={isOpenAdd}/>
-            {
-                (<RecordForm open={isOpenView} closeForm={closeViewForm} record={Record}/>)
-            }
+            <AddRecordForm listKey={ListKey} closeForm={closeAddForm} open={isOpenAdd}/>
+            <RecordForm open={isOpenView} closeForm={closeViewForm} record={Record}/>
+
             <div className={cn(s.listHead, s.wrapper)}>
                         <Filter/>
                         <Search/>
@@ -60,7 +73,13 @@ const List = ({isChosen, openList, list}) => {
                     <div className={s.overflow}>
                         {
                             Object.entries(list).map(([key,{id, title, text}]) =>
-                                <ListRecord key={key} id={id} title={title} text={text} openForm={openViewForm}/>
+                                <ListRecord listKey={ListKey}
+                                            recordKey={key}
+                                            id={id}
+                                            title={title}
+                                            text={text}
+                                            openForm={openViewForm}
+                                />
                             )
                         }
                     </div>

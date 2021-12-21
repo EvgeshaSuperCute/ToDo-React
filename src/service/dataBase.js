@@ -43,6 +43,23 @@ class Firebase{
     addList = (newList) =>{
         const newKey = this.database.ref().child('todo-list').push().key;
         this.database.ref('todo/' + newKey).set(newList);
+        //return newKey;
+    }
+
+    addRecord = (newRecord, key) =>{
+        const newKey =  this.database.ref().child(`todo/${key}/records`).push().key;
+        this.database.ref(`todo/${key}/records/`+ newKey).set(newRecord);
+        //return newKey;
+    }
+    removeRecord = (listKey, recordKey) =>{
+
+        this.database.ref(`todo/${listKey}/records/${recordKey}`).remove();
+        //return newKey;
+    }
+    removeList = (key) =>{
+
+        this.database.ref(`todo/${key}`).remove();
+        //return newKey;
     }
 }
 const FirebaseClass = new Firebase();
