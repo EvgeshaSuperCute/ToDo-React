@@ -14,8 +14,8 @@ const AddRecordForm = ({ listKey, open , closeForm}) =>{
 
     const onSubmit = (data)  => {
         console.log("data:", data, "KEY:", listKey);
-        addRecord(data,listKey);
-        addNewRecord();
+
+        addNewRecord(data,listKey);
     }
 
     const date = new Date();

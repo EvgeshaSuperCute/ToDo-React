@@ -13,28 +13,23 @@ import s from './list.module.css';
 import {useSelector} from "react-redux";
 import {selectListsData} from "../Redux/listReducer";
 
-const List = ({isChosen, openList, list}) => {
+const List = ({isChosen, openList}) => {
     const [isOpenView, setOpenView] = useState(false);
     const [isOpenAdd, setOpenAdd] = useState(false);
     const dbLists =  useSelector(selectListsData);
-    const [item, setItem] = useState({});
+    const {clean, onSetRecord, Record, ListKey, ListItem} = useContext(ListContext);
     const [render, setRender] = useState(true);
-    const {clean, onSetRecord, Record, ListKey} = useContext(ListContext);
     const navigate = useNavigate();
-    //setInterval(()=>{console.log(ListKey)},2000)
 
-
+    //console.log("###:",ListItem);
 
     useEffect( ()=>{
-        setItem(dbLists[ListKey].records);
-        console.log("list-update", list);
-        console.log("List:",list,"------Item:",item);
-        //setRender(!render);
-    }, [dbLists])
+        console.log("Item:",ListItem);
+    }, [])
 
     const openViewForm = (recordKey) => {
         setOpenView(true);
-        onSetRecord(list[recordKey]);
+        onSetRecord(ListItem[recordKey]);
 
     }
 
@@ -59,43 +54,47 @@ const List = ({isChosen, openList, list}) => {
         openList && openList();
     }
 
+    const useRender = () =>{
+        setRender(!render);
+    }
 
-    return (
-        <div className={cn(s.wrap/*s.target, {[s.active]: isChosen}*/)}>
+        return (
+            <div className={cn(s.wrap/*s.target, {[s.active]: isChosen}*/)}>
 
-            <AddRecordForm listKey={ListKey} closeForm={closeAddForm} open={isOpenAdd}/>
-            <RecordForm open={isOpenView} closeForm={closeViewForm} record={Record}/>
+                <AddRecordForm listKey={ListKey} closeForm={closeAddForm} open={isOpenAdd}/>
+                <RecordForm open={isOpenView} closeForm={closeViewForm} record={Record}/>
 
-            <div className={cn(s.listHead, s.wrapper)}>
-                        <Filter/>
-                        <Search/>
-                    </div>
-                    <div className={s.overflow}>
-                        {
-                            Object.entries(list).map(([key,{id, title, text}]) =>
-                                <ListRecord listKey={ListKey}
-                                            recordKey={key}
-                                            id={id}
-                                            title={title}
-                                            text={text}
-                                            openForm={openViewForm}
-                                />
-                            )
-                        }
-                    </div>
-                    <div className={cn(s.listFooter, s.wrapper)}>
-                        <button className={cn(s.button, s.back)} onClick={close}>
-                            Back
-                        </button>
-                        <button className={cn(s.button, s.add)} onClick={openAddForm}>
-                            Add
-                        </button>
-                        <button className={cn(s.button, s.delete)}>
-                            Delete selected
-                        </button>
-                    </div>
-        </div>
-    );
+                <div className={cn(s.listHead, s.wrapper)}>
+                    <Filter/>
+                    <Search/>
+                </div>
+                <div className={s.overflow}>
+                    {
+                        Object.entries(ListItem).map(([key, {id, title, text}]) =>
+                            <ListRecord listKey={ListKey}
+                                        recordKey={key}
+                                        id={id}
+                                        title={title}
+                                        text={text}
+                                        openForm={openViewForm}
+                            />
+                        )
+                    }
+                </div>
+                <div className={cn(s.listFooter, s.wrapper)}>
+                    <button className={cn(s.button, s.back)} onClick={close}>
+                        Back
+                    </button>
+                    <button className={cn(s.button, s.add)} onClick={openAddForm}>
+                        Add
+                    </button>
+                    <button className={cn(s.button, s.delete)} onClick={setRender}>
+                        Delete selected
+                    </button>
+                </div>
+            </div>
+        );
+
 }
 
 export default List;

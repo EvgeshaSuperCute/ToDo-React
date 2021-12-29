@@ -24,10 +24,19 @@ const App =  () =>   {
     const [isChosen, setChosen] = useState(false);
     const [lists, setLists] = useState({});
     const [item, setItem] = useState({});
-    const dbLists =  useSelector(selectListsData);
+    const dbLists=  useSelector(selectListsData);
     const dispatch = useDispatch();
     const [listKey, setKey] = useState('');
     const [record, setRecord] = useState({});
+
+
+    const [render, setRender] = useState(true);
+
+    function upd(){
+        setRender(!render);
+        console.log("!@#$%");
+        //check data by console log dbLists and other
+    }
 
     const {addList, addRecord, removeList, removeRecord, getListSocket} = FirebaseClass;
     //console.log('#',listKey)
@@ -35,7 +44,7 @@ const App =  () =>   {
         dispatch(getLists())
           //dispatch(getListsAsync());
           //console.log("update");
-    },[dispatch])
+    },[])
 
     useEffect(()=>{
         setLists(dbLists);
@@ -62,15 +71,19 @@ const App =  () =>   {
         //setKey(null);
     }
 
-    const handleAddNewRecord = () =>{
+    const handleAddNewRecord = (data,listKey) =>{
+        addRecord(data,listKey);
+        //dispatch(getListsAsync())
+        setKey(listKey);
         setItem(lists[listKey].records);
-        //dispatch(getLists())
 
     }
 
-    const handleDeleteChosenRecord = () =>{
+    const handleDeleteChosenRecord = (listKey, recordKey) =>{
+        removeRecord(listKey, recordKey);
+        //dispatch(getListsAsync())
+        setKey(listKey);
         setItem(lists[listKey].records);
-        //dispatch(getLists())
     }
 
 
@@ -78,6 +91,8 @@ const App =  () =>   {
             <ListContext.Provider value = {{
                 Record: record,
                 ListKey: listKey,
+                ListItem: item,
+                ListsContext: lists,
                 addNewRecord: handleAddNewRecord,
                 deleteChosenRecord: handleDeleteChosenRecord,
                 onSetRecord:handleSetRecord,
@@ -85,6 +100,7 @@ const App =  () =>   {
 
 
             }}>
+                <button  onClick={upd}>UPD</button>
                 <div className={s.App}>
                     <h2 className={s.h2}>
                         <img className={s.img} src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/gnome-todo-icon.png" alt=''/>
@@ -92,8 +108,8 @@ const App =  () =>   {
                     </h2>
                     <div className={cn(s.list)}>
                         <Routes>
-                            <Route path="/" element={<Lists isChosen={isChosen} chosenItem={activateList} dbLists={lists}/>}/>
-                            <Route path="/list" element={<List isChosen={isChosen} openList={activateList} list={item}/>}/>
+                            <Route path="/" element={<Lists isChosen={isChosen} chosenItem={activateList}/>}/>
+                            <Route path="/list" element={<List isChosen={isChosen} openList={activateList}/>}/>
                         </Routes>
                     </div>
                 </div>
