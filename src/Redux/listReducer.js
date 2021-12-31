@@ -39,10 +39,10 @@ export const getListsAsync = () => async (dispatch) => {
     dispatch(fetchListsResolve(data));
 }
 
-export const getLists = () => async (dispatch) => {
+export const getLists = () =>  (dispatch) => {
     //console.log(dispatch(fetchLists()));
-    await FirebaseClass.getListSocket((data) => { console.log("***:",data)
-        dispatch(fetchListsResolve(data));
+    FirebaseClass.getListSocket( (data) => { console.log("***:",data)
+         dispatch(fetchListsResolve(data));
     });
     //console.log('reducerData:', data);
     //dispatch(fetchListsResolve(data));

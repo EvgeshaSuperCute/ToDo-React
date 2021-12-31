@@ -4,17 +4,20 @@ import ListItem from "./listItem";
 
 import s from "./lists.module.css";
 import {useNavigate} from "react-router-dom";
+import {useContext} from "react";
+import {ListContext} from "./Context/listContext";
 
-const Lists = ({isChosen = false, chosenItem, dbLists = {}, }) => {
+const Lists = ({isChosen = false, chosenItem}) => {
     const navigate = useNavigate();
+    const {ListsContext} = useContext(ListContext);
 
     const openItem = (id) => {
         navigate('/list');
         chosenItem && chosenItem(id);
     }
 
-    const showData =  () =>{
-        console.log(dbLists)
+    const showData =  () => {
+        console.log("!-:", ListsContext)
     }
 
     return(
@@ -24,7 +27,7 @@ const Lists = ({isChosen = false, chosenItem, dbLists = {}, }) => {
             </div>
             <div className={cn(s.items)}>
                 {
-                    Object.entries(dbLists).map(([key,{id, title}]) =>
+                    Object.entries(ListsContext).map(([key,{id, title}]) =>
                         <ListItem KEY={key} id={id} title={title} openItem={openItem}/>
                     )
                 }
